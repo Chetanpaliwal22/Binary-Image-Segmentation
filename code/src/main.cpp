@@ -65,36 +65,8 @@ Mat finalImg;
 int adjacencyMatrix[1000][500];
 int v[1000][500];
 
-bool breadth_first_search(vector<Vertex> &adjacencyList, int source,int sink){
+bool 
 
-	queue<Vertex> queue,edge;
-	while(!queue.empty()){
-		queue.pop();
-	}
-	Vertex node_to_push = adjacencyList.at(source);
-	queue.push(node_to_push);
-	while(!queue.empty()){
-		Vertex current_node = queue.front();
-		queue.pop();
-		vector<Edge> edges;
-		for(int i=0;i<edges.size();++i){
-			//Edge edge;
-			//edge = edges.at(i);
-			/*Vertex adjacent_node = adjacencyList.at(edge.getToVertex());
-			if(edge.getWeight() > 0 && !adjacent_node.isIsVisited()){
-				adjacencyList.at(edge.getToVertex()).setIsVisited(true);
-				adjacencyList.at(edge.getToVertex()).setParentVertex(current_node.getVertex());
-				node_to_push = adjacencyList.at(edge.getToVertex());
-				if(adjacent_node.isIsSink()){
-					swap(queue,edge);
-					return true;
-				}
-				queue.push(node_to_push);
-			}*/
-			}
-		}
-	return true;
-}
 
 void flood(int x, int y, int M, int N)
 {
@@ -220,7 +192,7 @@ cout<<"After Weight Part.";
       int n;
       f >> n;
 
-//=======================================================================================
+
 for (int i = 0; i < height; ++i)
     {
 
@@ -229,149 +201,17 @@ for (int i = 0; i < height; ++i)
 int inten;
 inten = 0;
 
-//Scalar intensity1 = gray_image.at<uchar>(j, i);
-//    cout << "Intensity = " << endl << " " << intensity1.val[0] << endl << endl;
 
-//if(inten > (int)intensity1.val[0]){
-//if(inten >= max_intensity){
-//outputFile << inten << endl;
-//max_intensity = inten;
-//}
-}
-}
-//cout<<"Max Intensity: "<<max_intensity;
-
-//outputFile.close();
-
-//Ends here.
 int countForward = 0;
 int countBackground = 0;
 int intensityForward = 0;
 int intensityBackground = 0;
 
-/*cout<<"intensityForward: "<<intensityForward<<endl;
-cout<<"countForward: "<<countForward<<endl;
-cout<<"intensityBackground: "<<intensityBackground<<endl;
-cout<<"countBackground: "<<countBackground<<endl;
-*/
-
-//int matrix[4][4];
-int matrix[4][4];
-int delta[4][4];
-int weightedMatrix[16][16];
-
-matrix[0][0] = 1;
-matrix[0][1] = 2;
-matrix[0][2] = 20;
-matrix[0][3] = 1;
-matrix[1][0] = 1;
-matrix[1][1] = 100;
-matrix[1][2] = 5;
-matrix[1][3] = 30;
-matrix[2][0] = 1;
-matrix[2][1] = 3;
-matrix[2][2] = 40;
-matrix[2][3] = 1;
-matrix[3][0] = 1;
-matrix[3][1] = 4;
-matrix[3][2] = 2;
-matrix[3][3] = 1;
-
-int deltaTest[2][2];
-
-int weightedMatrixTest[4][4];
-
-deltaTest[0][0] = 1;
-deltaTest[0][1] = 52;
-deltaTest[1][0] = 74;
-deltaTest[1][1] = 100;
-
-int maxDifference =0;
-int difference =0;
-
-cout<<"0"<<endl;
-
-
-for(int i=0;i<4;i++){
-for(int j=0;j<4;j++){
-difference =0;
-for (int k = -1; k <= 1; k++) {
-                    for (int l = -1; l <= 1; l++){
-
-if((i+k)> -1 && (l+j) > -1 && (i+k) < 4 && (l+j) < 4) {
-                        difference = matrix[i][j] - matrix[k + i][l + j];
-
-//cout<<endl<<abs(difference)<<endl;
-if(abs(difference) > maxDifference){
-maxDifference = abs(difference);
-}
-}
-}
 }
 
-delta[i][j] = abs(difference);
-
-}
-}
-
-cout<<"Diff Matrix Test."<<endl;
-
-for(int i=0;i<2;i++){
-for(int j=0;j<2;j++){
-
-//cout<<deltaTest[i][j]<<" ";
-}
-cout<<endl;
 }
 
 
-//cout<<"0.5 "<<endl;
-
-
-cout<<"   1";
-
-//Weighted Matrix Test
-//max_intensity = 100;
-//max_intensity = maxDifference;
-//=============================
-/*for(int i=0;i<numberPixels;++i){
-        int xValue = i/width;
-        int yValue = i%width;
-        if(i-1>=0 && yValue-1>=0){//edge to left
-            double edge_weight = abs(gradient_image.at<uchar>(xValue,yValue) - gradient_image.at<uchar>(xValue,yValue-1));
-            if(edge_weight<0.5){
-                adjacencyMatrix.at(i).addEdge(Edge(i,i-1,9999,false,false));
-            }else{
-                adjacencyMatrix.at(i).addEdge(Edge(i,i-1,1.0,false,false));
-            }
-        }
-        if(i+1<numberPixels && yValue+1<width){//edge to right
-            double edge_weight = abs(gradient_image.at<uchar>(xValue,yValue) - gradient_image.at<uchar>(xValue,yValue+1));
-            if(edge_weight<0.5){
-                adjacencyMatrix.at(i).addEdge(Edge(i,i+1,9999,false,false));
-            }else{
-                adjacencyMatrix.at(i).addEdge(Edge(i,i+1,1.0,false,false));
-            }
-        }
-        if(i-width>=0 && xValue-1>=0){//edge to top
-            double edge_weight = abs(gradient_image.at<uchar>(xValue,yValue) - gradient_image.at<uchar>(xValue-1,yValue));
-            if(edge_weight<0.5){
-                adjacencyMatrix.at(i).addEdge(Edge(i,i-width,9999,false,false));
-            }else{
-                adjacencyMatrix.at(i).addEdge(Edge(i,i-width,1.0,false,false));
-            }
-        }
-        if(i+width<numberPixels && xValue+1<height){//edge to bottom
-            double edge_weight = abs(gradient_image.at<uchar>(xValue,yValue) - gradient_image.at<uchar>(xValue+1,yValue));
-            if(edge_weight<0.5){
-                adjacencyMatrix.at(i).addEdge(Edge(i,i+width,9999,false,false));
-            }else{
-                adjacencyMatrix.at(i).addEdge(Edge(i,i+width,1.0,false,false));
-            }
-        }
-    }
-*/
-//=======================================================================================
 
 cout<<"Pixel Parts";
 int count = INT_MAX;
